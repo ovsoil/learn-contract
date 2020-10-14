@@ -21,3 +21,5 @@ dist
 
 # VS Code
 .vscode
+
+package-lock.json

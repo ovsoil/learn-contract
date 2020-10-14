@@ -3,21 +3,15 @@
 
 pragma solidity ^0.6.0;
 
-import "./Auth.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract Box {
+
+contract NewBox is Ownable {
     uint256 private value;
-    Auth private auth;
-
-    constructor(Auth _auth) public {
-        auth = _auth;
-    }
 
     event ValueChanged(uint256 newValue);
 
-    function store(uint256 newValue) public {
-        require(auth.isAdministrator(msg.sender), "Unauthorized");
-
+    function store(uint256 newValue) public onlyOwner {
         value = newValue;
         emit ValueChanged(newValue);
     }
