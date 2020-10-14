@@ -1,11 +1,10 @@
 // test/Box.test.js
-// Load dependencies
+
 // Load dependencies
 const { accounts, contract } = require('@openzeppelin/test-environment');
 const { expect } = require('chai');
 
 // Load compiled artifacts
-const Auth = contract.fromArtifact('Auth');
 const Box = contract.fromArtifact('Box');
 
 // Start test block
@@ -14,13 +13,12 @@ describe('Box', function () {
 
   beforeEach(async function () {
     // Deploy a new Box contract for each test
-    this.auth = await Auth.new({ from: owner })
-    this.contract = await Box.new(this.auth.address, { from: owner });
+    this.contract = await Box.new({ from: owner });
   });
 
   // Test case
   it('retrieve returns a value previously stored', async function () {
-    // Store a value
+    // Store a value - recall that only the owner account can do this!
     await this.contract.store(42, { from: owner });
 
     // Test if the returned value is the same one

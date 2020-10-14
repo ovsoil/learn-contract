@@ -1,5 +1,5 @@
-const NewBox = artifacts.require("NewBox");
+const Box = artifacts.require("Box");
 
 module.exports = function (deployer) {
-  deployer.deploy(NewBox);
+  deployer.deploy(Box);
 };
