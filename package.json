@@ -1,0 +1,19 @@
+{
+  "name": "learn-contract",
+  "version": "1.0.0",
+  "description": "learn ethereum contract development",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "truffle": "^5.1.48"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
