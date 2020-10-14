@@ -1,24 +1,28 @@
 // test/NewBox.test.js
+
 // Load dependencies
+const { accounts, contract } = require('@openzeppelin/test-environment');
 const { expect } = require('chai');
 
 // Load compiled artifacts
-const NewBox = artifacts.require('NewBox');
+const NewBox = contract.fromArtifact('NewBox');
 
 // Start test block
-contract('NewBox', function () {
+describe('NewBox', function () {
+  const [ owner ] = accounts;
+
   beforeEach(async function () {
     // Deploy a new NewBox contract for each test
-    this.newbox = await NewBox.new();
+    this.contract = await NewBox.new({ from: owner });
   });
 
   // Test case
   it('retrieve returns a value previously stored', async function () {
-    // Store a value
-    await this.newbox.store(42);
+    // Store a value - recall that only the owner account can do this!
+    await this.contract.store(42, { from: owner });
 
     // Test if the returned value is the same one
     // Note that we need to use strings to compare the 256 bit integers
-    expect((await this.newbox.retrieve()).toString()).to.equal('42');
+    expect((await this.contract.retrieve()).toString()).to.equal('42');
   });
 });

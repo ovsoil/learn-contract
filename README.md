@@ -7,7 +7,7 @@
 ```shell
 npx truffle compile
 npx truffle migrate --network development
-npx truffle test
+npx truffle test // or npm test
 npx truffle exec --network development ./scripts/index.js
 ```
 
