@@ -1,9 +1,8 @@
-// contracts/Box.sol
+// contracts/BoxV2.sol
 // SPDX-License-Identifier: MIT
-
 pragma solidity ^0.6.0;
 
-contract Box {
+contract BoxV2 {
     uint256 private value;
 
     event ValueChanged(uint256 newValue);
@@ -15,5 +14,10 @@ contract Box {
 
     function retrieve() public view returns (uint256) {
         return value;
+    }
+
+    function increment() public {
+        value = value + 1;
+        emit ValueChanged(value);
     }
 }
